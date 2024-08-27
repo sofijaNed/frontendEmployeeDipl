@@ -1,0 +1,20 @@
+  <h1 mat-dialog-title>Create Team</h1>
+  <mat-divider></mat-divider>
+
+  <div class="content">
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>Team Name</mat-label>
+      <input matInput [(ngModel)]="team.teamName" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>Number of members</mat-label>
+      <input matInput [(ngModel)]="team.maxNumber" />
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions class="footer">
+    <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" (click)="confirm()" cdkFocusInitial>Confirm</button>
+  </div>

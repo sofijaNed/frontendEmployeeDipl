@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <h1 mat-dialog-title>Employee</h1>
+  <mat-divider></mat-divider>
+
+  <div class="user-content" *ngIf="!spinnerVisible; else spinner">
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>First Name</mat-label>
+      <input [disabled]="true" matInput [(ngModel)]="employee!.firstName" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Last Name</mat-label>
+      <input [disabled]="true" matInput [(ngModel)]="employee!.lastName" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Address</mat-label>
+      <input [disabled]="true" matInput [(ngModel)]="employee!.address" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Email</mat-label>
+      <input [disabled]="true" matInput [(ngModel)]="employee!.email" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Contact Number</mat-label>
+      <input [disabled]="true" matInput [(ngModel)]="employee!.contactNumber" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Birthday</mat-label>
+      <input [disabled]="true" matInput [(ngModel)]="employee!.dateOfBirth" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Salary</mat-label>
+      <input [disabled]="true" matInput [disabled]="true" [(ngModel)]="currentSalary!.salaryAmount" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Pay Date</mat-label>
+      <input [disabled]="true" matInput [(ngModel)]="currentSalary!.paymentDate" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Team</mat-label>
+      <input [disabled]="true" matInput [(ngModel)]="employee!.teamDTO.teamName" />
+    </mat-form-field>
+  </div>
+  <div>
+
+    <ng-template #spinner>
+      <mat-spinner></mat-spinner>
+    </ng-template>

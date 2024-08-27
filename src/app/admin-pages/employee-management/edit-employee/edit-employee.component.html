@@ -1,0 +1,75 @@
+<div class="wrapper">
+  <h1 mat-dialog-title>Employee</h1>
+  <mat-divider></mat-divider>
+
+  <div class="content" *ngIf="!spinnerVisible; else spinner">
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>First Name</mat-label>
+      <input matInput [(ngModel)]="employee!.firstName" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Last Name</mat-label>
+      <input matInput [(ngModel)]="employee!.lastName" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Address</mat-label>
+      <input matInput [(ngModel)]="employee!.address" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="employee!.email" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Contact Number</mat-label>
+      <input matInput [(ngModel)]="employee!.contactNumber" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Birthday</mat-label>
+      <input matInput [(ngModel)]="employee!.dateOfBirth" [matDatepicker]="birthDate" />
+      <mat-datepicker-toggle matIconSuffix [for]="birthDate"></mat-datepicker-toggle>
+      <mat-datepicker #birthDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Salary</mat-label>
+      <input matInput [disabled]="true" [(ngModel)]="currentSalary!.salaryAmount" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Pay Date</mat-label>
+      <input matInput [disabled]="true" [(ngModel)]="currentSalary!.paymentDate" [matDatepicker]="payDate" />
+      <mat-datepicker-toggle matIconSuffix [for]="payDate"></mat-datepicker-toggle>
+      <mat-datepicker #payDate></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Team</mat-label>
+      <mat-select [(ngModel)]="employee!.teamDTO" [compareWith]="compareTeams">
+        <mat-option *ngFor="let team of teams" [value]="team">{{team.teamName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="employee!.userDTO!.password" />
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions class="footer">
+    <mat-divider></mat-divider>
+    <div class="buttons">
+      <button mat-raised-button class="button" color="primary" (click)="editSalary()">Edit Salary</button>
+      <button mat-raised-button class="button" color="primary" (click)="save()">Save</button>
+    </div>
+  </div>
+
+  <ng-template #spinner>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+  <div>

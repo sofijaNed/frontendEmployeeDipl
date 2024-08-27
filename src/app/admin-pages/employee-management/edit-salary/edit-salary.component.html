@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Edit Salary</h1>
+<mat-divider></mat-divider>
+
+<div class="content" *ngIf="!spinnerVisible; else spinner">
+  <ng-container *ngFor="let salary of salaries">
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Salary</mat-label>
+      <input matInput [disabled]="true" [(ngModel)]="salary.salaryAmount" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Pay Date</mat-label>
+      <input matInput [(ngModel)]="salary.paymentDate" [disabled]="true" [matDatepicker]="payDate" />
+      <mat-datepicker-toggle matIconSuffix [for]="payDate"></mat-datepicker-toggle>
+      <mat-datepicker #payDate></mat-datepicker>
+    </mat-form-field>
+  </ng-container>
+
+  <mat-form-field subscriptSizing="dynamic" class="grid-item">
+    <mat-label>New Salary</mat-label>
+    <input matInput type="number" [(ngModel)]="newSalary.salaryAmount" />
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic" class="grid-item">
+    <mat-label>Pay Date</mat-label>
+    <input matInput [(ngModel)]="newSalary.paymentDate" [matDatepicker]="payDate" />
+    <mat-datepicker-toggle matIconSuffix [for]="payDate"></mat-datepicker-toggle>
+    <mat-datepicker #payDate></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="footer">
+  <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="!newSalary.salaryAmount || !newSalary.paymentDate"
+    (click)="confirm()">Save</button>
+</div>
+
+<div>
+
+  <ng-template #spinner>
+    <mat-spinner></mat-spinner>
+  </ng-template>

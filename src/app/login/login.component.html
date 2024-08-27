@@ -1,0 +1,27 @@
+<div class="form" (keyup.enter)="login()" *ngIf="!spinnerVisible; else spinner">
+  <mat-form-field class="form-field">
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="userDto.username" />
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="userDto.password" [type]="showPassword ? 'text' : 'password'" />
+    <ng-container matSuffix>
+      <button type="button" mat-icon-button (click)="showPassword = !showPassword" tabindex="-1">
+        <mat-icon fontIcon="{{ showPassword ? 'visibility_off' : 'visibility' }}"></mat-icon>
+      </button>
+    </ng-container>
+  </mat-form-field>
+
+
+  <div class="center-button mt-3">
+    <button mat-flat-button color="primary" class="app-button w-100" (click)="login()"
+      [disabled]="!userDto.username || !userDto.password">
+      Login
+    </button>
+  </div>
+</div>
+
+<ng-template #spinner>
+  <mat-spinner></mat-spinner>
+</ng-template>

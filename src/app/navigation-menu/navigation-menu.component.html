@@ -1,0 +1,129 @@
+<ng-container *ngIf="{ userInfo: currentUser | async } as user">
+  <div class="flex header">
+    <!-- <button class="menu-button" mat-stroked-button routerLinkActive [routerLinkActiveOptions]="{ exact: true }"
+    #home="routerLinkActive" [color]="home.isActive ? 'primary' : ''" routerLink="/">
+    <mat-icon>home</mat-icon>
+    home
+  </button> -->
+    {{ user.userInfo?.email }}
+  </div>
+
+  <div class="flex content">
+    <mat-divider></mat-divider>
+    <ng-container *ngIf="user.userInfo">
+      <ng-container *ngIf="user.userInfo.role === roles.Admin">
+        <button
+          class="menu-button"
+          mat-stroked-button
+          [routerLink]="routes.Employees"
+          routerLinkActive
+          #employees="routerLinkActive"
+          [color]="employees.isActive ? 'primary' : ''"
+        >
+          <mat-icon>person</mat-icon>
+          Employees
+        </button>
+
+        <button
+          class="menu-button"
+          mat-stroked-button
+          [routerLink]="routes.Teams"
+          routerLinkActive
+          #teams="routerLinkActive"
+          [color]="teams.isActive ? 'primary' : ''"
+        >
+          <mat-icon>groups</mat-icon>
+          Teams
+        </button>
+
+        <button
+          class="menu-button"
+          mat-stroked-button
+          [routerLink]="routes.Projects"
+          routerLinkActive
+          #projects="routerLinkActive"
+          [color]="projects.isActive ? 'primary' : ''"
+        >
+          <mat-icon>feed</mat-icon>
+          Projects
+        </button>
+
+        <button
+          class="menu-button"
+          mat-stroked-button
+          [routerLink]="routes.Requests"
+          routerLinkActive
+          #requests="routerLinkActive"
+          [color]="requests.isActive ? 'primary' : ''"
+        >
+          <mat-icon>edit_note</mat-icon>
+          Requests
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="user.userInfo.role === roles.User">
+        <button
+          class="menu-button"
+          mat-stroked-button
+          [routerLink]="routes.Employee"
+          routerLinkActive
+          #employees="routerLinkActive"
+          [color]="employees.isActive ? 'primary' : ''"
+        >
+          <mat-icon>person</mat-icon>
+          User Info
+        </button>
+
+        <button
+          class="menu-button"
+          mat-stroked-button
+          [routerLink]="routes.Request"
+          routerLinkActive
+          #requests="routerLinkActive"
+          [color]="requests.isActive ? 'primary' : ''"
+        >
+          <mat-icon>edit_note</mat-icon>
+          Requests
+        </button>
+
+        <button
+          class="menu-button"
+          mat-stroked-button
+          [routerLink]="routes.Assignments"
+          routerLinkActive
+          #requests="routerLinkActive"
+          [color]="requests.isActive ? 'primary' : ''"
+        >
+          <mat-icon>task</mat-icon>
+          Assignments
+        </button>
+      </ng-container>
+    </ng-container>
+
+    <mat-divider class="bottom-divider"></mat-divider>
+  </div>
+
+  <div class="flex footer">
+    <button
+      *ngIf="currentUser | async"
+      class="menu-button"
+      mat-stroked-button
+      color="stroked"
+      (click)="logout()"
+    >
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+
+    <button
+      *ngIf="!(currentUser | async)"
+      class="menu-button"
+      mat-stroked-button
+      color="stroked"
+      [routerLink]="routes.Login"
+    >
+      <mat-icon>login</mat-icon>
+      Login
+    </button>
+  </div>
+</ng-container>

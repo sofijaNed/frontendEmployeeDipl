@@ -1,0 +1,19 @@
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
+  padding: 25px 50px;
+}
+
+.grid-item {
+  background-color: #f0f0f0;
+}
+
+.grid-item:first-child {
+  grid-column: span 2;
+}
+
+.footer {
+  display: flex;
+  justify-content: right;
+}

@@ -1,0 +1,11 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 25px 50px;
+}
+
+.footer {
+  display: flex;
+  justify-content: right;
+}

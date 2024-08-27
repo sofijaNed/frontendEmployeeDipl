@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-column-id{
+  width: 10%;
+}
+.mat-column-name{
+  width: 40%;
+}
+.mat-column-maxNumber{
+  width: 30%;
+}
+.mat-column-table-actions{
+  width: 20%;
+}

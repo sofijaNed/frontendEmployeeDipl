@@ -1,0 +1,29 @@
+.dialog {
+  width: 600px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
+  padding: 25px 50px;
+}
+
+.grid-item {
+  background-color: #f0f0f0;
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  gap: 25px;
+  justify-content: right;
+}
+
+.table {
+  padding: 0 50px;
+}
+
+.table-input {
+  height: 40px;
+}

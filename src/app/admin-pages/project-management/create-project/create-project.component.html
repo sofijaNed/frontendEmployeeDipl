@@ -1,0 +1,115 @@
+<h1 mat-dialog-title>Create Project</h1>
+<mat-divider></mat-divider>
+
+<div class="content" *ngIf="!spinnerVisible; else spinner">
+  <mat-form-field subscriptSizing="dynamic" class="grid-item">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="project.projectName" />
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic" class="grid-item">
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="project.description" />
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic" class="grid-item">
+    <mat-label>Start Date</mat-label>
+    <input matInput [(ngModel)]="project.startDate" [matDatepicker]="startDate" />
+    <mat-datepicker-toggle matIconSuffix [for]="startDate"></mat-datepicker-toggle>
+    <mat-datepicker #startDate></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic" class="grid-item">
+    <mat-label>End Date</mat-label>
+    <input matInput [(ngModel)]="project.endDate" [matDatepicker]="endDate" />
+    <mat-datepicker-toggle matIconSuffix [for]="endDate"></mat-datepicker-toggle>
+    <mat-datepicker #endDate></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic" class="grid-item">
+    <mat-label>Team</mat-label>
+    <mat-select [(ngModel)]="project.teamDTO" (ngModelChange)="getEmployees(project.teamDTO)">
+      <mat-option *ngFor="let team of teams" [value]="team">{{team.teamName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="table" *ngIf="!tableSpinner && employees">
+  <table mat-table #assignmentTable [dataSource]="this.project.assignments" class="mat-elevation-z8">
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <mat-form-field *ngIf="i == 0" subscriptSizing="dynamic" class="grid-item table-input">
+          <mat-select [(ngModel)]="assignment.employeeDTO">
+            <mat-option *ngFor="let employee of employees" [value]="employee">{{employee.email}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <ng-container *ngIf="i != 0">
+          {{element.employeeDTO.email}}
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <mat-form-field *ngIf="i == 0" subscriptSizing="dynamic" class="grid-item table-input">
+          <input matInput [(ngModel)]="assignment.description" />
+        </mat-form-field>
+
+        <ng-container *ngIf="i != 0">
+          {{element.description}}
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <mat-form-field *ngIf="i == 0" subscriptSizing="dynamic" class="grid-item table-input">
+          <mat-select [(ngModel)]="assignment.status">
+            <mat-option *ngFor="let status of assignmentStatus" [value]="status">{{status}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <ng-container *ngIf="i != 0">
+          {{element.status}}
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tableActions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <div class="action-buttons">
+          <button *ngIf="i == 0" (click)="addRow()" [disabled]="!assignment.employeeDTO || !assignment.status || !assignment.description" mat-fab color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button *ngIf="i != 0" mat-fab color="primary" (click)="removeRow(element)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator onpage [pageSize]="5" [length]="employees!.length" showFirstLastButtons aria-label="Select page">
+  </mat-paginator>
+</div>
+
+<mat-spinner *ngIf="tableSpinner"></mat-spinner>
+
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="footer">
+  <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-raised-button color="primary" (click)="confirm()">Confirm</button>
+</div>
+
+<ng-template #spinner>
+  <mat-spinner></mat-spinner>
+</ng-template>

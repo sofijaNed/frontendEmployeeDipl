@@ -1,0 +1,72 @@
+<ng-container *ngIf="!spinnerVisible else spinner">
+  <h1 mat-dialog-title>Create Employee</h1>
+  <mat-divider></mat-divider>
+
+  <div class="content">
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>First Name</mat-label>
+      <input matInput [(ngModel)]="employee.firstName" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Last Name</mat-label>
+      <input matInput [(ngModel)]="employee.lastName" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Address</mat-label>
+      <input matInput [(ngModel)]="employee.address" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="employee.email" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Contact Number</mat-label>
+      <input matInput [(ngModel)]="employee.contactNumber" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Birthday</mat-label>
+      <input matInput [(ngModel)]="employee.dateOfBirth" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Salary</mat-label>
+      <input matInput type="number" [(ngModel)]="employee.salaries[0].salaryAmount" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Pay Date</mat-label>
+      <input matInput [(ngModel)]="employee.salaries[0].paymentDate" [matDatepicker]="payDate" />
+      <mat-datepicker-toggle matIconSuffix [for]="payDate"></mat-datepicker-toggle>
+      <mat-datepicker #payDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Team</mat-label>
+      <mat-select [(ngModel)]="employee!.teamDTO">
+        <mat-option *ngFor="let team of teams" [value]="team">{{team.teamName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="employee.userDTO.password" />
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions class="footer">
+    <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" (click)="confirm()" cdkFocusInitial>Confirm</button>
+  </div>
+</ng-container>
+
+<ng-template #spinner>
+  <mat-spinner></mat-spinner>
+</ng-template>

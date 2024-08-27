@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.create-button {
+  margin-bottom: 25px;
+}
+
+.mat-drawer-content {
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.mat-drawer-inner-container {
+  min-width: 235px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+
+.user-content {
+
+  .mdc-text-field--disabled .mdc-floating-label,
+  .mdc-text-field--disabled .mdc-text-field__input {
+    color: black;
+  }
+}

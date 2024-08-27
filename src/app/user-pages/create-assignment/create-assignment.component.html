@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Edit Assignment</h1>
+<mat-divider></mat-divider>
+
+<div class="content">
+  <mat-form-field subscriptSizing="dynamic" class="grid-item table-input">
+    <mat-select [(ngModel)]="assignment.projectDTO">
+      <mat-option *ngFor="let project of projects" [value]="project">{{project}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="assignment.description" />
+  </mat-form-field>
+
+  <mat-form-field subscriptSizing="dynamic" class="grid-item table-input">
+    <mat-select [(ngModel)]="assignment.status">
+      <mat-option *ngFor="let status of assignmentStatus" [value]="status">{{status}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="footer">
+  <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-raised-button color="primary" (click)="confirm()" cdkFocusInitial>Confirm</button>
+</div>

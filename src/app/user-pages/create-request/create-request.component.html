@@ -1,0 +1,31 @@
+<ng-container>
+  <h1 mat-dialog-title>Create Employee</h1>
+  <mat-divider></mat-divider>
+
+  <div class="content">
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Reason</mat-label>
+      <input matInput [(ngModel)]="request.reason" />
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>Start Date</mat-label>
+      <input matInput [(ngModel)]="request.startDate" [matDatepicker]="startDate" />
+      <mat-datepicker-toggle matIconSuffix [for]="startDate"></mat-datepicker-toggle>
+      <mat-datepicker #startDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" class="grid-item">
+      <mat-label>End Date</mat-label>
+      <input matInput [(ngModel)]="request.endDate" [matDatepicker]="endDate" />
+      <mat-datepicker-toggle matIconSuffix [for]="endDate"></mat-datepicker-toggle>
+      <mat-datepicker #endDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions class="footer">
+    <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" (click)="confirm()" cdkFocusInitial>Confirm</button>
+  </div>
+</ng-container>
